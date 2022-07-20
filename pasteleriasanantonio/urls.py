@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from pasteleria import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.InitiaView.as_view()),
+    path('registro/', views.RegistrarUsuarioView.as_view())
 ]
