@@ -42,3 +42,28 @@ class UsuarioForm(forms.Form):
                 raise forms.ValidationError('Este DNI ya fue registrado')
         except Cliente.DoesNotExist:
             return dni
+
+class LoginForm(forms.Form):
+    usuario = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Usuario'}))
+    contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña'}))
+
+    def clean_usuario(self):
+        usuario = self.cleaned_data['usuario']
+        try:
+            User.objects.get(username=usuario)
+            return usuario
+        except User.DoesNotExist:
+            raise forms.ValidationError('Este usuario no existe')
+
+    def clean_contraseña(self):        
+        contraseña = self.cleaned_data['contraseña']        
+        try:
+            usuario = self.cleaned_data['usuario']
+            obj = User.objects.get(username=usuario)
+
+            if obj.check_password(contraseña):
+                return contraseña
+            else:
+                raise forms.ValidationError('Esta contraseña es incorrecta')
+        except KeyError:
+            return contraseña
