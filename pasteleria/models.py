@@ -17,8 +17,8 @@ PAGO = [
 
 class User(AbstractUser):
     dni = models.CharField('DNI', max_length=8, unique=True)
-    telefono = models.CharField('Telefono', max_length=15)
-    direccion = models.TextField('Direccion')
+    telefono = models.CharField('Telefono', max_length=15, blank=True)
+    direccion = models.TextField('Direccion', blank=True)
 
     class Meta:
         db_table = 'auth_user'
@@ -52,6 +52,7 @@ class Pastel(models.Model):
     descripcion = models.TextField('Descripcion')
     precio = models.FloatField('Precio')
     tamaño = models.CharField('Tamaño', choices= TAMAÑOS, max_length=10)
+    imagen = models.ImageField('pasteles/')
 
     class Meta:
         verbose_name = 'Pastel'

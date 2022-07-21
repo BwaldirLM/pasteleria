@@ -44,7 +44,7 @@ class UsuarioForm(forms.Form):
             return dni
 
 class LoginForm(forms.Form):
-    usuario = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Usuario'}))
+    usuario = forms.CharField()
     contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña'}))
 
     def clean_usuario(self):
