@@ -53,6 +53,7 @@ class Pastel(models.Model):
     precio = models.FloatField('Precio')
     tamaño = models.CharField('Tamaño', choices= TAMAÑOS, max_length=10)
     imagen = models.ImageField('pasteles/')
+    categoria = models.CharField('Categoria', max_length=15)
 
     class Meta:
         verbose_name = 'Pastel'

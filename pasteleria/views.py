@@ -53,7 +53,7 @@ def login_view(request):
 
             user = authenticate(username=usuario, password=contraseña)
             if user is not None:
-                print('Login exitoso')
+                
                 login(request, user)
                 return redirect('pasteleria:index')
     else:
