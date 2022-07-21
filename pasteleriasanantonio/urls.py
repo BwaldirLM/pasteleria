@@ -20,6 +20,6 @@ from pasteleria import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.InitiaView.as_view()),
-    path('registro/', views.RegistrarUsuarioView.as_view())
+    path('', views.InitiaView.as_view(), name = 'login'),
+    path('registro/', views.registro_usuario_view, name ='registro')
 ]

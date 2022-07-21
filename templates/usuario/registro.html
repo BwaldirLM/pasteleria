@@ -2,5 +2,145 @@
 {% block titulo%} San Antonio | registro{%endblock%}
 {% block cardtitle %}Registrar nuevo cliente{%endblock%}
 {%block content%}
+<div class="card-body register-card-body" >
+    
+    <form action="" method="post">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        {{form.usuario.label_tag}}
+        <div class="input-group mb-3">
+          {{form.usuario}}                    
+          <div class="input-group-append">
+              <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+              </div>
+          </div>
+          {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.usuario.errors}}
+            </div>
+            {%endif%}
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="col-sm col-lg-6 form-group">
+            {{form.nombre.label_tag}}
+            <div class="input-group mb-3">
+              {{form.nombre}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+              {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.nombre.errors}}
+            </div>
+            {%endif%}
+            </div>
+          </div>
+          <div class="col-sm col-lg-6 form-group">
+            {{form.apellidos.label_tag}}
+            <div class="input-group mb-3">
+              {{form.apellidos}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+              {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.apellidos.errors}}
+            </div>
+            {%endif%}
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        {{form.email.label_tag}}
+        <div class="input-group mb-3">
+          {{form.email}}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.email.errors}}
+            </div>
+            {%endif%}
+        </div>
+      </div>
+      
+      
+      <div class="form-row">
+        <div class="form-group col-sm col-lg-6">
+          {{form.dni.label_tag}}
+          <div class="input-group mb-3" >
+            {{form.dni}}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-calendar"></span>
+              </div>
+            </div>
+            {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.dni.errors}}
+            </div>
+            {%endif%}
+          </div>
+        </div>
+        <div class="form-group col-sm col-lg-6">
+          {{form.telefono.label_tag}}
+          <div class="input-group mb-3">
+            {{form.telefono}}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+            {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.telefono.errors}}
+            </div>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        {{form.direccion.label_tag}}
+        <div class="input-group mb-3">
+          {{form.direccion}}
+          <div class="input-group-append">
+              <div class="input-group-text">
+                  <span class="fas fa-address-book"></span>
+              </div>
+          </div>
+          {%if form.errors%}
+            <div class="invalid-feedback">
+              {{form.direcion.errors}}
+            </div>
+            {%endif%}
+        </div>
+      </div>
+      <div class="form-group">
+        {{form.contraseña.label_tag}}
+        <div class="input-group mb-3">
+          {{form.contraseña}}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+        
+    </form>
 
+    <a href="" class="text-center">Ya estoy registrado</a>
+  </div>
 {%endblock%}

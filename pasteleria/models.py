@@ -1,6 +1,6 @@
 from calendar import c
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 TAMAÑOS = [
     ('P','PEQUEÑO'), 
@@ -14,30 +14,36 @@ PAGO = [
 
 # Create your models here.
 
-class Persona(models.Model):
+
+class User(AbstractUser):
     dni = models.CharField('DNI', max_length=8, unique=True)
     telefono = models.CharField('Telefono', max_length=15)
     direccion = models.TextField('Direccion')
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
-        abstract = True
+        db_table = 'auth_user'
 
-class JefeProduccion(Persona):
+class JefeProduccion(models.Model):
     id = models.AutoField(primary_key=True)
     sueldo = models.FloatField('Sueldo')
     descripcion = models.TextField('Descripcion')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, )
 
-class Vendedor(Persona):
+
+class Vendedor(models.Model):
     id = models.AutoField(primary_key=True)
     sueldo = models.FloatField('Sueldo')
     descripcion = models.TextField('Descripcion')
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, )
 
 
-class Cliente(Persona):
+
+class Cliente(models.Model):
     id = models.AutoField(primary_key=True)
     estado = models.BooleanField('Estado',default=True)
     fecha_registro = models.DateField('Fecha de registro', auto_now_add=True)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, )
+
 
 
 class Pastel(models.Model):
@@ -66,7 +72,7 @@ class Venta(models.Model):
     fecha = models.DateField('Fecha', auto_now_add=True)
     importe = models.FloatField('Importe')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Cliente')
-    Vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE, verbose_name='Vemdedor')
+    Vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE, verbose_name='Vendedor')
 
 class VentaDetalle(models.Model):
     id = models.AutoField(primary_key=True)
